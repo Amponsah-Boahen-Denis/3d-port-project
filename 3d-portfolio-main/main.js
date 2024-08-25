@@ -63,6 +63,49 @@ let About = '';
 let globalProfile = '';
 
 // Fetch data from the API
+// axios.get('https://back-api-mu.vercel.app/api/data')
+//   .then(response => {
+//     console.log('API Response:', response.data);
+//     const data = response.data;
+//     const { projects: fetchedProjects, wallname: fetchedWallname } = data;
+
+//     // Update global variables with wallname data
+//     Name = fetchedWallname.name || '';
+//     About = fetchedWallname.about || '';
+//     globalProfile = fetchedWallname.profile ? `https://back-api-mu.vercel.app/textures/${fetchedWallname.profile.split('/').pop()}` : '';
+
+//     console.log('Global Name:', Name);
+//     console.log('Global About:', About);
+//     console.log('Global Profile Image:', globalProfile);
+
+//     // Populate the global projects array
+//     projects = [
+//       {
+//         image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project1Image.split('/').pop()}`,
+//         url: fetchedProjects.link1,
+//       },
+//       {
+//         image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project2Image.split('/').pop()}`,
+//         url: fetchedProjects.link2,
+//       },
+//       {
+//         image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project3Image.split('/').pop()}`,
+//         url: fetchedProjects.link3,
+//       },
+//       {
+//         image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project4Image.split('/').pop()}`,
+//         url: fetchedProjects.link4,
+//       },
+//     ];
+
+//     console.log('Projects Array:', projects);
+//     ProjectTextures(); // Initialize project textures with fetched data
+//   })
+//   .catch(error => {
+//     console.error('There was an error fetching the data!', error);
+//   });
+
+
 axios.get('https://back-api-mu.vercel.app/api/data')
   .then(response => {
     console.log('API Response:', response.data);
@@ -70,9 +113,9 @@ axios.get('https://back-api-mu.vercel.app/api/data')
     const { projects: fetchedProjects, wallname: fetchedWallname } = data;
 
     // Update global variables with wallname data
-    Name = fetchedWallname.name || '';
-    About = fetchedWallname.about || '';
-    globalProfile = fetchedWallname.profile ? `https://back-api-mu.vercel.app/textures/${fetchedWallname.profile.split('/').pop()}` : '';
+    Name = fetchedWallname?.name || '';
+    About = fetchedWallname?.about || '';
+    globalProfile = fetchedWallname?.profile ? `https://back-api-mu.vercel.app/textures/${fetchedWallname.profile.split('/').pop()}` : '';
 
     console.log('Global Name:', Name);
     console.log('Global About:', About);
@@ -81,20 +124,20 @@ axios.get('https://back-api-mu.vercel.app/api/data')
     // Populate the global projects array
     projects = [
       {
-        image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project1Image.split('/').pop()}`,
-        url: fetchedProjects.link1,
+        image: fetchedProjects?.project1Image ? `https://back-api-mu.vercel.app/textures/${fetchedProjects.project1Image.split('/').pop()}` : '',
+        url: fetchedProjects?.link1 || '',
       },
       {
-        image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project2Image.split('/').pop()}`,
-        url: fetchedProjects.link2,
+        image: fetchedProjects?.project2Image ? `https://back-api-mu.vercel.app/textures/${fetchedProjects.project2Image.split('/').pop()}` : '',
+        url: fetchedProjects?.link2 || '',
       },
       {
-        image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project3Image.split('/').pop()}`,
-        url: fetchedProjects.link3,
+        image: fetchedProjects?.project3Image ? `https://back-api-mu.vercel.app/textures/${fetchedProjects.project3Image.split('/').pop()}` : '',
+        url: fetchedProjects?.link3 || '',
       },
       {
-        image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project4Image.split('/').pop()}`,
-        url: fetchedProjects.link4,
+        image: fetchedProjects?.project4Image ? `https://back-api-mu.vercel.app/textures/${fetchedProjects.project4Image.split('/').pop()}` : '',
+        url: fetchedProjects?.link4 || '',
       },
     ];
 
@@ -104,6 +147,7 @@ axios.get('https://back-api-mu.vercel.app/api/data')
   .catch(error => {
     console.error('There was an error fetching the data!', error);
   });
+
 
 // Function to Setup Project Textures
 function setupProjectTextures() {
