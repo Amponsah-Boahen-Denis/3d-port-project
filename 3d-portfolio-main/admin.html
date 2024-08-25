@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script defer src="admin.js">
+
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #0d0d0d;
+            color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.6);
+            perspective: 1000px;
+        }
+        .form-container {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #b5960d;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #b5960d;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #f0f0f0;
+        }
+        input[type="text"], input[type="email"], input[type="url"], textarea, input[type="file"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid #333;
+            background: #2e2e2e;
+            color: #f0f0f0;
+            box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+        button {
+            padding: 15px 20px;
+            background-color: #b5960d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #a57e0b;
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.7);
+        }
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+        .image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <div class="form-container">
+            <form id="admin-form" action="http://localhost:3000/save" method="POST" enctype="multipart/form-data">
+                <h2>Wallname</h2>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Name" required>
+
+                <label for="about">About</label>
+                <textarea id="about" name="about" placeholder="About" required></textarea>
+
+                <label for="profile">Profile Image</label>
+                <input type="file" id="profile" name="profile" accept="image/*">
+                <img id="profilePreview" class="image-preview" src="" alt="Profile Image">
+
+                <h2>Contact Information</h2>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+
+                <label for="facebook">Facebook URL</label>
+                <input type="text" id="facebook" name="facebook" placeholder="Facebook URL">
+
+                <label for="tiktok">TikTok URL</label>
+                <input type="text" id="tiktok" name="tiktok" placeholder="TikTok URL">
+
+                <label for="linkedin">LinkedIn URL</label>
+                <input type="text" id="linkedin" name="linkedin" placeholder="LinkedIn URL">
+
+                <label for="instagram">Instagram URL</label>
+                <input type="text" id="instagram" name="instagram" placeholder="Instagram URL">
+
+                <label for="youtube">YouTube URL</label>
+                <input type="text" id="youtube" name="youtube" placeholder="YouTube URL">
+
+                <h2>Projects</h2>
+                <label for="project1Image">Project 1 Image</label>
+                <input type="file" id="project1Image" name="project1Image" accept="image/*">
+                <img id="project1Preview" class="image-preview" src="" alt="Project 1 Image">
+
+                <label for="link1">Project 1 Link</label>
+                <input type="text" id="link1" name="link1" placeholder="Project 1 Link">
+
+                <label for="project2Image">Project 2 Image</label>
+                <input type="file" id="project2Image" name="project2Image" accept="image/*">
+                <img id="project2Preview" class="image-preview" src="" alt="Project 2 Image">
+
+                <label for="link2">Project 2 Link</label>
+                <input type="text" id="link2" name="link2" placeholder="Project 2 Link">
+
+                <label for="project3Image">Project 3 Image</label>
+                <input type="file" id="project3Image" name="project3Image" accept="image/*">
+                <img id="project3Preview" class="image-preview" src="" alt="Project 3 Image">
+
+                <label for="link3">Project 3 Link</label>
+                <input type="text" id="link3" name="link3" placeholder="Project 3 Link">
+
+                <label for="project4Image">Project 4 Image</label>
+                <input type="file" id="project4Image" name="project4Image" accept="image/*">
+                <img id="project4Preview" class="image-preview" src="" alt="Project 4 Image">
+
+                <label for="link4">Project 4 Link</label>
+                <input type="text" id="link4" name="link4" placeholder="Project 4 Link">
+
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+   
+</body>
+</html>
