@@ -16,7 +16,7 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  axios.get('http://localhost:3000/api/data')
+  axios.get('https://back-api-mu.vercel.app/api/data')
       .then(response => {
           const { contact } = response.data;
 
@@ -63,7 +63,7 @@ let About = '';
 let globalProfile = '';
 
 // Fetch data from the API
-axios.get('http://localhost:3000/api/data')
+axios.get('https://back-api-mu.vercel.app/api/data')
   .then(response => {
     console.log('API Response:', response.data);
     const data = response.data;
@@ -72,7 +72,7 @@ axios.get('http://localhost:3000/api/data')
     // Update global variables with wallname data
     Name = fetchedWallname.name || '';
     About = fetchedWallname.about || '';
-    globalProfile = fetchedWallname.profile ? `http://localhost:3000/textures/${fetchedWallname.profile.split('/').pop()}` : '';
+    globalProfile = fetchedWallname.profile ? `https://back-api-mu.vercel.app/textures/${fetchedWallname.profile.split('/').pop()}` : '';
 
     console.log('Global Name:', Name);
     console.log('Global About:', About);
@@ -81,19 +81,19 @@ axios.get('http://localhost:3000/api/data')
     // Populate the global projects array
     projects = [
       {
-        image: `http://localhost:3000/textures/${fetchedProjects.project1Image.split('/').pop()}`,
+        image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project1Image.split('/').pop()}`,
         url: fetchedProjects.link1,
       },
       {
-        image: `http://localhost:3000/textures/${fetchedProjects.project2Image.split('/').pop()}`,
+        image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project2Image.split('/').pop()}`,
         url: fetchedProjects.link2,
       },
       {
-        image: `http://localhost:3000/textures/${fetchedProjects.project3Image.split('/').pop()}`,
+        image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project3Image.split('/').pop()}`,
         url: fetchedProjects.link3,
       },
       {
-        image: `http://localhost:3000/textures/${fetchedProjects.project4Image.split('/').pop()}`,
+        image: `https://back-api-mu.vercel.app/textures/${fetchedProjects.project4Image.split('/').pop()}`,
         url: fetchedProjects.link4,
       },
     ];
