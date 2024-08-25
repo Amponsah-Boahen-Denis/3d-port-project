@@ -7,7 +7,7 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-app.use(cors());
+//app.use(cors());
 
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
