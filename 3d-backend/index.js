@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(cors({
-    origin: ["https://fullstack-mern-front.vercel.app"],
+    origin: ["https://back-api-mu.vercel.app/"],
       methods: ["GET", "POST", "PUT"],
     credentials: true
   }));
