@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 let projects = [];
-let projectTextures = []; // Initialize this array appropriately
+//let projectTextures = []; // Initialize this array appropriately
 
 // Axios GET Request to Fetch Data
 // Global variables for name and about
