@@ -12,11 +12,11 @@ app.use(cors());
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use(cors({
-    origin: ["https://back-api-mu.vercel.app/"],
-      methods: ["GET", "POST", "PUT"],
-    credentials: true
-  }));
+// app.use(cors({
+//     origin: ["https://back-api-mu.vercel.app/"],
+//       methods: ["GET", "POST", "PUT"],
+//     credentials: true
+//   }));
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://Denis:decimal@cluster0.yzgehjl.mongodb.net/Dynamic?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
