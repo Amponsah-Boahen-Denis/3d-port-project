@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('name').value = wallname.name || '';
                 document.getElementById('about').value = wallname.about || '';
                 if (wallname.profile) {
-                    document.getElementById('profilePreview').src = `/textures/${wallname.profile.split('/').pop()}`;
+                    document.getElementById('profilePreview').src = `https://back-api-mu.vercel.app${wallname.profile}`;
                 }
             }
 
@@ -32,16 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('link4').value = projects.link4 || '';
 
                 if (projects.project1Image) {
-                    document.getElementById('project1Preview').src = `https://back-api-mu.vercel.app/textures/${projects.project1Image.split('/').pop()}`;
+                    document.getElementById('project1Preview').src = `https://back-api-mu.vercel.app${projects.project1Image}`;
                 }
                 if (projects.project2Image) {
-                    document.getElementById('project2Preview').src = `https://back-api-mu.vercel.app/textures/${projects.project2Image.split('/').pop()}`;
+                    document.getElementById('project2Preview').src = `https://back-api-mu.vercel.app${projects.project2Image}`;
                 }
                 if (projects.project3Image) {
-                    document.getElementById('project3Preview').src = `https://back-api-mu.vercel.app/textures/${projects.project3Image.split('/').pop()}`;
+                    document.getElementById('project3Preview').src = `https://back-api-mu.vercel.app${projects.project3Image}`;
                 }
                 if (projects.project4Image) {
-                    document.getElementById('project4Preview').src = `https://back-api-mu.vercel.app/textures/${projects.project4Image.split('/').pop()}`;
+                    document.getElementById('project4Preview').src = `https://back-api-mu.vercel.app${projects.project4Image}`;
                 }
             }
         })
