@@ -7,16 +7,18 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-//app.use(cors());
 
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
 app.use(cors({
     origin: ["https://back-api-mu.vercel.app"],
-      methods: ["GET", "POST", "PUT"],
+    methods: ["GET", "POST", "PUT"],
     credentials: true
-  }));
+}));
+
+// Serve static files from the 'public/textures' directory
+app.use('/textures', express.static(path.join(__dirname, 'public/textures')));
+
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://Denis:decimal@cluster0.yzgehjl.mongodb.net/Dynamic?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
@@ -46,7 +48,6 @@ const storage = multer.diskStorage({
         cb(null, `${file.fieldname}-${uniqueSuffix}`);
     }
 });
-
 
 const upload = multer({ storage });
 
