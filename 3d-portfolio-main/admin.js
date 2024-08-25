@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('name').value = wallname.name || '';
                 document.getElementById('about').value = wallname.about || '';
                 if (wallname.profile) {
-                    document.getElementById('profilePreview').src = `https://back-api-mu.vercel.app/textures/${wallname.profile.split('/').pop()}`;
+                    document.getElementById('profilePreview').src = `/textures/${wallname.profile.split('/').pop()}`;
                 }
             }
 
