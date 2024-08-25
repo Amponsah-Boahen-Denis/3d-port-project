@@ -183,11 +183,17 @@ const app = express();
 
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(cors({
+//     origin: ["https://back-api-mu.vercel.app"],
+//     methods: ["GET", "POST", "PUT"],
+//     credentials: true
+// }));
 app.use(cors({
-    origin: ["https://back-api-mu.vercel.app"],
+    origin: ["https://back-api-mu.vercel.app", "https://3d-front.vercel.app"], // Allow requests from these origins
     methods: ["GET", "POST", "PUT"],
     credentials: true
 }));
+
 
 // Serve static files from the 'public/textures' directory
 app.use('/textures', express.static(path.join(__dirname, 'public/textures')));
