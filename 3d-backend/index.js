@@ -189,7 +189,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     credentials: true
 // }));
 app.use(cors({
-    origin: ["https://back-api-mu.vercel.app", "https://3d-front.vercel.app"], // Allow requests from these origins
+    origin: ["https://3d-front.vercel.app"], // Allow requests from these origins
     methods: ["GET", "POST", "PUT"],
     credentials: true
 }));
