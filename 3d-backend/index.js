@@ -56,7 +56,9 @@ app.use(cors({
 
 
 // Serve static files from the '3d-portfolio-main' directory
-app.use(express.static(path.join(__dirname, '../3d-portfolio-main')));
+//app.use(express.static(path.join(__dirname, '../3d-portfolio-main')));
+app.use('/textures', express.static(path.join(__dirname, '../public/textures')));
+
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://Denis:decimal@cluster0.yzgehjl.mongodb.net/Dynamic?retryWrites=true&w=majority&appName=Cluster0', {
