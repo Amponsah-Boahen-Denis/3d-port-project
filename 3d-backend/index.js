@@ -6,10 +6,42 @@ const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
 
+// Define schemas here or import them if they're in separate files
+const wallnameSchema = new mongoose.Schema({
+    name: String,
+    about: String,
+    profile: String
+});
+
+const contactSchema = new mongoose.Schema({
+    email: String,
+    facebook: String,
+    tiktok: String,
+    linkedin: String,
+    instagram: String,
+    youtube: String
+});
+
+const projectsSchema = new mongoose.Schema({
+    project1Image: String,
+    link1: String,
+    project2Image: String,
+    link2: String,
+    project3Image: String,
+    link3: String,
+    project4Image: String,
+    link4: String
+});
+
+const Wallname = mongoose.model('Wallname', wallnameSchema);
+const Contact = mongoose.model('Contact', contactSchema);
+const Projects = mongoose.model('Projects', projectsSchema);
+
 const app = express();
 
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());  // Added to parse JSON request bodies
 app.use(cors({
     origin: ["https://3d-front.vercel.app"], // Allow requests from this origin
     methods: ["GET", "POST", "PUT"],
@@ -122,7 +154,7 @@ app.post('/save', upload.fields([
             link4: link4 || existingProjects.link4
         }, { upsert: true, new: true });
 
-        res.redirect('https://back-api-mu.vercel.app/admin.html');
+        res.redirect('https://3d-front.vercel.app/admin');  // Ensure this URL is correct
     } catch (err) {
         console.error('Error saving data:', err);
         res.status(500).send('Server Error');
