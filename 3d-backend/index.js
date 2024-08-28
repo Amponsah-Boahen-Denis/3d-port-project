@@ -256,7 +256,7 @@ app.get('/', (req, res) => {
 
 // Serve admin.html at /admin
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, '3d-backend', 'admin.html'));
+    res.sendFile(path.join(__dirname, '../3d-backend', 'admin.html'));
 });
 
 // Route to fetch data as JSON
@@ -340,4 +340,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-
