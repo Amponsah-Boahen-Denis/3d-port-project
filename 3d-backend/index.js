@@ -167,7 +167,7 @@ app.post('/save', upload.fields([
             link4: link4 || existingProjects.link4
         }, { upsert: true, new: true });
 
-        res.redirect('https://3d-front.vercel.app/admin');  // Ensure this URL is correct
+        res.redirect('https://admindashboard-henna.vercel.app');  // Ensure this URL is correct
     } catch (err) {
         console.error('Error saving data:', err);
         res.status(500).send('Server Error');
