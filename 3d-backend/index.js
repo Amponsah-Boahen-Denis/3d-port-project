@@ -42,11 +42,18 @@ const app = express();
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());  // Added to parse JSON request bodies
+// app.use(cors({
+//     origin: ["https://3d-front.vercel.app"], // Allow requests from this origin
+//     methods: ["GET", "POST", "PUT"],
+//     credentials: true
+// }));
+
 app.use(cors({
-    origin: ["https://3d-front.vercel.app"], // Allow requests from this origin
+    origin: ["https://3d-front.vercel.app", "https://admindashboard-henna.vercel.app"], // Allow requests from these origins
     methods: ["GET", "POST", "PUT"],
     credentials: true
 }));
+
 
 // Serve static files from the '3d-portfolio-main' directory
 app.use(express.static(path.join(__dirname, '../3d-portfolio-main')));
