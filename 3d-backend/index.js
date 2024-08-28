@@ -6,7 +6,7 @@ const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
 
-// Define schemas here or import them if they're in separate files
+// Define schemas
 const wallnameSchema = new mongoose.Schema({
     name: String,
     about: String,
@@ -41,24 +41,15 @@ const app = express();
 
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());  // Added to parse JSON request bodies
-// app.use(cors({
-//     origin: ["https://3d-front.vercel.app"], // Allow requests from this origin
-//     methods: ["GET", "POST", "PUT"],
-//     credentials: true
-// }));
-
+app.use(bodyParser.json());
 app.use(cors({
-    origin: ["https://3d-front.vercel.app", "https://admindashboard-henna.vercel.app"], // Allow requests from these origins
+    origin: ["https://3d-front.vercel.app", "https://admindashboard-henna.vercel.app"],
     methods: ["GET", "POST", "PUT"],
     credentials: true
 }));
 
-
-// Serve static files from the '3d-portfolio-main' directory
-//app.use(express.static(path.join(__dirname, '../3d-portfolio-main')));
+// Serve static files from the 'textures' directory
 app.use('/textures', express.static(path.join(__dirname, '../public/textures')));
-
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://Denis:decimal@cluster0.yzgehjl.mongodb.net/Dynamic?retryWrites=true&w=majority&appName=Cluster0', {
@@ -90,10 +81,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'index.html'));
 });
 
-// Serve admin.html at /admin
-// app.get('/admin', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'admin.html'));
-// });
 // Serve admin.html at /admin
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, '3d-backend', 'admin.html'));
@@ -167,7 +154,8 @@ app.post('/save', upload.fields([
             link4: link4 || existingProjects.link4
         }, { upsert: true, new: true });
 
-        res.redirect('https://admindashboard-henna.vercel.app');  // Ensure this URL is correct
+        // Redirect back to the admin dashboard
+        res.redirect('https://admindashboard-henna.vercel.app');
     } catch (err) {
         console.error('Error saving data:', err);
         res.status(500).send('Server Error');
