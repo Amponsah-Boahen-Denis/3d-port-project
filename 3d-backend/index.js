@@ -90,7 +90,8 @@ app.get('/', (req, res) => {
 
 // Serve admin.html at /admin
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'admin.html'));
+    res.render("../3d-portfolio-main/admin.html")
+   // res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'admin.html'));
 });
 
 // Route to fetch data as JSON
