@@ -11,22 +11,47 @@ const app = express();
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-    origin: ["https://3d-front.vercel.app"],
+    origin: ["https://3d-front.vercel.app"], // Allow requests from this origin
     methods: ["GET", "POST", "PUT"],
     credentials: true
 }));
 
 // Serve static files from the '3d-portfolio-main' directory
-app.use(express.static(path.join(__dirname, '3d-portfolio-main')));
+app.use(express.static(path.join(__dirname, '../3d-portfolio-main')));
+
+// Connect to MongoDB
+mongoose.connect('mongodb+srv://Denis:decimal@cluster0.yzgehjl.mongodb.net/Dynamic?retryWrites=true&w=majority&appName=Cluster0', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Error connecting to MongoDB:', err));
+
+// Multer configuration for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const dir = path.join(__dirname, '../public/textures');
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+        cb(null, dir);
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + path.extname(file.originalname);
+        cb(null, `${file.fieldname}-${uniqueSuffix}`);
+    }
+});
+
+const upload = multer({ storage });
 
 // Serve index.html at the root
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '3d-portfolio-main', 'index.html'));
+    res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'index.html'));
 });
 
 // Serve admin.html at /admin
 app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, '3d-portfolio-main', 'admin.html'));
+    res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'admin.html'));
 });
 
 // Route to fetch data as JSON
@@ -35,7 +60,6 @@ app.get('/api/data', async (req, res) => {
         const wallname = await Wallname.findOne();
         const contact = await Contact.findOne();
         const projects = await Projects.findOne();
-
         res.json({ wallname, contact, projects });
     } catch (err) {
         console.error('Error fetching data:', err);
@@ -52,30 +76,24 @@ app.post('/save', upload.fields([
     { name: 'profile' }
 ]), async (req, res) => {
     try {
-        // Fetch existing data
         const existingWallname = await Wallname.findOne() || {};
         const existingContact = await Contact.findOne() || {};
         const existingProjects = await Projects.findOne() || {};
 
-        // Extract data from the request
         const { name, about, email, facebook, tiktok, linkedin, instagram, youtube, link1, link2, link3, link4 } = req.body;
 
-        // Base URL for images stored in the GitHub repository
         const githubBaseURL = 'https://raw.githubusercontent.com/Amponsah-Boahen-Denis/imagesfiles/main/textures/';
 
-        // Handle profile image
         const profileImage = req.files.profile 
             ? `${githubBaseURL}${req.files.profile[0].filename}` 
             : existingWallname.profile;
 
-        // Update Wallname document
         await Wallname.findOneAndUpdate({}, {
             name: name || existingWallname.name,
             about: about || existingWallname.about,
             profile: profileImage || existingWallname.profile
         }, { upsert: true, new: true });
 
-        // Update Contact document
         await Contact.findOneAndUpdate({}, {
             email: email || existingContact.email,
             facebook: facebook || existingContact.facebook,
@@ -85,7 +103,6 @@ app.post('/save', upload.fields([
             youtube: youtube || existingContact.youtube
         }, { upsert: true, new: true });
 
-        // Update Projects document
         await Projects.findOneAndUpdate({}, {
             project1Image: req.files.project1Image 
                 ? `${githubBaseURL}${req.files.project1Image[0].filename}` 
