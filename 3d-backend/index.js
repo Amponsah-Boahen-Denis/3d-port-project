@@ -92,12 +92,25 @@ const Contact = mongoose.model('Contact', contactSchema);
 const Projects = mongoose.model('Projects', projectsSchema);
 
 // Serve static files from the '3d-portfolio-main' directory
+// app.use(express.static(path.join(__dirname, '../3d-portfolio-main')));
+
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'index.html'));
+// });
+
+// app.get('/admin', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'admin.html'));
+// });
+
+
 app.use(express.static(path.join(__dirname, '../3d-portfolio-main')));
 
+// Serve index.html at the root
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'index.html'));
 });
 
+// Serve admin.html at /admin
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, '../3d-portfolio-main', 'admin.html'));
 });
