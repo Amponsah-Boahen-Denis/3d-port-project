@@ -63,62 +63,19 @@ let About = '';
 let globalProfile = '';
 
 
-// axios.get('https://back-api-mu.vercel.app/api/data')
-//   .then(response => {
-//     console.log('API Response:', response.data);
-//     const data = response.data;
-//     const { projects: fetchedProjects = {}, wallname: fetchedWallname = {} } = data;
-
-//     // Base URL for your GitHub repository raw files
-//     const githubBaseUrl = 'https://raw.githubusercontent.com/Amponsah-Boahen-Denis/imagesfiles/main/textures/';
-
-//     // Update global variables with wallname data
-//     Name = fetchedWallname.name || '';
-//     About = fetchedWallname.about || '';
-//     globalProfile = fetchedWallname.profile ? `${githubBaseUrl}${fetchedWallname.profile.split('/').pop()}` : '';
-
-//     console.log('Global Name:', Name);
-//     console.log('Global About:', About);
-//     console.log('Global Profile Image:', globalProfile);
-
-//     // Populate the global projects array
-//     projects = [
-//       {
-//         image: fetchedProjects.project1Image ? `${githubBaseUrl}${fetchedProjects.project1Image.split('/').pop()}` : '',
-//         url: fetchedProjects.link1 || '',
-//       },
-//       {
-//         image: fetchedProjects.project2Image ? `${githubBaseUrl}${fetchedProjects.project2Image.split('/').pop()}` : '',
-//         url: fetchedProjects.link2 || '',
-//       },
-//       {
-//         image: fetchedProjects.project3Image ? `${githubBaseUrl}${fetchedProjects.project3Image.split('/').pop()}` : '',
-//         url: fetchedProjects.link3 || '',
-//       },
-//       {
-//         image: fetchedProjects.project4Image ? `${githubBaseUrl}${fetchedProjects.project4Image.split('/').pop()}` : '',
-//         url: fetchedProjects.link4 || '',
-//       },
-//     ];
-
-//     console.log('Projects Array:', projects);
-//     ProjectTextures(); // Initialize project textures with fetched data
-//   })
-//   .catch(error => {
-//     console.error('There was an error fetching the data!', error);
-//   });
-
-
 axios.get('https://back-api-mu.vercel.app/api/data')
   .then(response => {
     console.log('API Response:', response.data);
     const data = response.data;
     const { projects: fetchedProjects = {}, wallname: fetchedWallname = {} } = data;
 
+    // Base URL for your GitHub repository raw files
+    const githubBaseUrl = 'https://raw.githubusercontent.com/Amponsah-Boahen-Denis/imagesfiles/main/textures/';
+
     // Update global variables with wallname data
     Name = fetchedWallname.name || '';
     About = fetchedWallname.about || '';
-    globalProfile = fetchedWallname.profile || ''; // Use the URL directly from the database
+    globalProfile = fetchedWallname.profile ? `${githubBaseUrl}${fetchedWallname.profile.split('/').pop()}` : '';
 
     console.log('Global Name:', Name);
     console.log('Global About:', About);
@@ -127,19 +84,19 @@ axios.get('https://back-api-mu.vercel.app/api/data')
     // Populate the global projects array
     projects = [
       {
-        image: fetchedProjects.project1Image || '', // Use the URL directly from the database
+        image: fetchedProjects.project1Image ? `${githubBaseUrl}${fetchedProjects.project1Image.split('/').pop()}` : '',
         url: fetchedProjects.link1 || '',
       },
       {
-        image: fetchedProjects.project2Image || '', // Use the URL directly from the database
+        image: fetchedProjects.project2Image ? `${githubBaseUrl}${fetchedProjects.project2Image.split('/').pop()}` : '',
         url: fetchedProjects.link2 || '',
       },
       {
-        image: fetchedProjects.project3Image || '', // Use the URL directly from the database
+        image: fetchedProjects.project3Image ? `${githubBaseUrl}${fetchedProjects.project3Image.split('/').pop()}` : '',
         url: fetchedProjects.link3 || '',
       },
       {
-        image: fetchedProjects.project4Image || '', // Use the URL directly from the database
+        image: fetchedProjects.project4Image ? `${githubBaseUrl}${fetchedProjects.project4Image.split('/').pop()}` : '',
         url: fetchedProjects.link4 || '',
       },
     ];
@@ -150,6 +107,49 @@ axios.get('https://back-api-mu.vercel.app/api/data')
   .catch(error => {
     console.error('There was an error fetching the data!', error);
   });
+
+
+// axios.get('https://back-api-mu.vercel.app/api/data')
+//   .then(response => {
+//     console.log('API Response:', response.data);
+//     const data = response.data;
+//     const { projects: fetchedProjects = {}, wallname: fetchedWallname = {} } = data;
+
+//     // Update global variables with wallname data
+//     Name = fetchedWallname.name || '';
+//     About = fetchedWallname.about || '';
+//     globalProfile = fetchedWallname.profile || ''; // Use the URL directly from the database
+
+//     console.log('Global Name:', Name);
+//     console.log('Global About:', About);
+//     console.log('Global Profile Image:', globalProfile);
+
+//     // Populate the global projects array
+//     projects = [
+//       {
+//         image: fetchedProjects.project1Image || '', // Use the URL directly from the database
+//         url: fetchedProjects.link1 || '',
+//       },
+//       {
+//         image: fetchedProjects.project2Image || '', // Use the URL directly from the database
+//         url: fetchedProjects.link2 || '',
+//       },
+//       {
+//         image: fetchedProjects.project3Image || '', // Use the URL directly from the database
+//         url: fetchedProjects.link3 || '',
+//       },
+//       {
+//         image: fetchedProjects.project4Image || '', // Use the URL directly from the database
+//         url: fetchedProjects.link4 || '',
+//       },
+//     ];
+
+//     console.log('Projects Array:', projects);
+//     ProjectTextures(); // Initialize project textures with fetched data
+//   })
+//   .catch(error => {
+//     console.error('There was an error fetching the data!', error);
+//   });
 
 
 // Function to Setup Project Textures
