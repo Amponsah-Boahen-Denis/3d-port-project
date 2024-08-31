@@ -19,11 +19,17 @@ const app = express();
 // Middleware setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// app.use(cors({
+//     origin: ["https://3d-front.vercel.app", "https://admindashboard-henna.vercel.app"],
+//     methods: ["GET", "POST", "PUT"],
+//     credentials: true
+// }));
 app.use(cors({
     origin: ["https://3d-front.vercel.app", "https://admindashboard-henna.vercel.app"],
     methods: ["GET", "POST", "PUT"],
     credentials: true
 }));
+
 
 // Multer configuration for file uploads
 const storage = multer.memoryStorage();  // Use memory storage for Multer
