@@ -316,6 +316,18 @@ app.get('/api/data', async (req, res) => {
     }
 });
 
+app.get('/api/data1', async (req, res) => {
+    try {
+        const wallname = await Wallname.findOne();
+        const contact = await Contact.findOne();
+        const projects = await Projects.findOne();
+        res.json({ wallname, contact, projects });
+    } catch (err) {
+        console.error('Error fetching data:', err);
+        res.status(500).send('Server Error');
+    }
+});
+
 // Route to handle form submission and file uploads
 app.post('/save', upload.fields([
     { name: 'project1Image' }, 
